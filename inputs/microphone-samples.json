@@ -1,0 +1,88 @@
+{
+  "rows": [
+    1536,
+    2048
+  ],
+  "dimension": 24,
+  "groups": 180,
+  "sigma": 1.25,
+  "budgetBytes": 196608,
+  "pairLimit": 49152,
+  "accept": 0.014,
+  "reject": 0.045,
+  "projection": [
+    "spectralV1",
+    "spectralV1",
+    "scaledV2"
+  ],
+  "amplitude": [
+    0.125,
+    0.5,
+    1.0
+  ],
+  "weight": [
+    0,
+    0.125,
+    1,
+    2
+  ],
+  "overlap": [
+    [
+      37,
+      120,
+      5
+    ],
+    [
+      400,
+      101,
+      7
+    ],
+    [
+      700,
+      104,
+      7
+    ]
+  ],
+  "approximate": {
+    "rank": 25,
+    "codebook": 65536,
+    "key": "small-v1",
+    "absoluteError": 0.016
+  },
+  "actions": [
+    [
+      "renew",
+      "M2"
+    ],
+    [
+      "open",
+      "left-right"
+    ],
+    [
+      "judge",
+      "scaledV2"
+    ],
+    [
+      "hold",
+      7
+    ],
+    [
+      "witness",
+      5
+    ],
+    [
+      "group-add",
+      8
+    ],
+    [
+      "choose",
+      "M2"
+    ]
+  ],
+  "scaleV2": [
+    1,
+    2,
+    0.5,
+    2
+  ]
+}

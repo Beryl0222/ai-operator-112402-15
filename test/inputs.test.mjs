@@ -1,21 +1,29 @@
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import {readFileSync} from 'node:fs';
 import test from 'node:test';
+import { kernelRow, kernelCode, kernelSketch } from '../inputs/microphone-samples.mjs';
 
-const d = JSON.parse(readFileSync(new URL('../inputs/session.json', import.meta.url), 'utf8'));
+const data=JSON.parse(readFileSync(new URL('../inputs/microphone-samples.json',import.meta.url),'utf8'));
+test('核码本、录音特征和观测权重的格式与关联', () => {
+  assert.equal(kernelRow(0,37).physicalGroup,kernelRow(1,120).physicalGroup);
+  assert.equal(kernelRow(0,700).values.length,data.dimension);
+  assert.ok(data.pairLimit<data.rows[0]*data.rows[1]/25);
+  assert.ok(data.weight.includes(0));
+  assert.ok(data.accept< data.reject);
+  assert.notEqual(data.projection[1],data.projection[2]);
+  let largestError=0;
+  for(let a=0;a<data.approximate.codebook;a+=517){
+    const x=kernelCode(a), u=kernelSketch(a);
+    for(let b=0;b<data.approximate.codebook;b+=641){
+      const y=kernelCode(b),v=kernelSketch(b);
+      const dot=u.reduce((s,f,i)=>s+f*v[i],0);
+      const distance=x.reduce((s,f,i)=>s+(f-y[i])**2,0);
+      largestError=Math.max(largestError,Math.abs(dot-Math.exp(-distance/(2*data.sigma**2))));
+    }
+  }
+  assert.ok(largestError>0 && largestError<=data.approximate.absoluteError);
 
-test("相位稀疏槽到共享参数有效", () => {
-  assert.ok(d.phases.every(p=>p.slots.length===9&&p.slots.every(id=>id===null||id in d.shared)));
-});
-
-test("监督区梯度的高分辨率坐标和形状一致", () => {
-  assert.ok(d.windows.every(w=>w.grad.length===w.region[3]-w.region[1]&&w.grad.every(r=>r.length===w.region[2]-w.region[0])));
-});
-
-test("多相位的共享槽与混精度容量竞争", () => {
-  assert.ok(d.phases.filter(p=>p.slots.includes('a')).length===3&&d.precision.exactSlots===1);
-});
-
-test("混精度消费优先级覆盖各相位", () => {
-  assert.ok(d.precision.priority.length===d.phases.length && d.precision.priority.every(a=>d.phases.some(p=>p.id.join()===a.join())));
+  const t=0.5**2/data.sigma**2;
+  assert.ok(Math.exp(t)*t*t/2<=data.approximate.absoluteError);
+  assert.notDeepEqual(kernelRow(1,120).values,kernelRow(1,120,"scaledV2").values);
 });
