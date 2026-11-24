@@ -14,12 +14,18 @@ export function kernelCode(code) {
   const radius=[.25,.375,.5][code%3];
   return Float64Array.from({length:data.dimension},(_,i)=>Math.cos(angle*(i+1)+(i+1)*.38)*radius/Math.sqrt(data.dimension));
 }
-export function kernelSketch(code) {
+export function kernelSketch(code, precision = 1) {
   const point=kernelCode(code);
-  const output=new Float64Array(1+point.length);
+  const output=new Float64Array(precision === 2 ? data.precision2.rank : 1+point.length);
   const invSigma=1/data.sigma;
   const envelope=Math.exp(-point.reduce((a,x)=>a+x*x,0)*invSigma**2/2);
   output[0]=envelope;
   for(let i=0;i<point.length;i++) output[i+1]=envelope*point[i]*invSigma;
+  if(precision===2) {
+    let k=1+point.length;
+    for(let i=0;i<point.length;i++){
+      for(let j=i;j<point.length;j++) output[k++]=envelope*point[i]*point[j]*invSigma**2/(i===j?Math.SQRT2:1);
+    }
+  }
   return output;
 }

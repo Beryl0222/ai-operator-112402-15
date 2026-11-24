@@ -84,5 +84,12 @@
     2,
     0.5,
     2
-  ]
+  ],
+  "precision2": {
+    "key": "diagnostic-v1",
+    "rank": 325,
+    "absoluteError": 0.00081,
+    "queryBlockSize": 96,
+    "maxDiagnosticGroups": 40
+  }
 }

@@ -26,4 +26,7 @@ test('核码本、录音特征和观测权重的格式与关联', () => {
   const t=0.5**2/data.sigma**2;
   assert.ok(Math.exp(t)*t*t/2<=data.approximate.absoluteError);
   assert.notDeepEqual(kernelRow(1,120).values,kernelRow(1,120,"scaledV2").values);
+  assert.equal(kernelSketch(731,2).length,data.precision2.rank);
+  assert.ok(Math.exp(t)*t*t*t/6<=data.precision2.absoluteError);
+  assert.ok(data.precision2.maxDiagnosticGroups<data.groups);
 });
