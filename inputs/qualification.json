@@ -1,0 +1,331 @@
+{
+  "sourceShape": [
+    312,
+    496,
+    8
+  ],
+  "seed": 8193,
+  "scale": 0.125,
+  "exactSlots": 2,
+  "maxWorkBytes": 131072,
+  "weights": {
+    "a": 0.18,
+    "b": -0.08,
+    "c": 0.315,
+    "d": -0.29,
+    "e": 0.44,
+    "f": -0.19,
+    "g": 0.124,
+    "h": 0.506
+  },
+  "deviceMask": {
+    "m1": [
+      [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      [
+        "a",
+        "e"
+      ],
+      [
+        "d",
+        "h"
+      ],
+      [
+        "b",
+        "e",
+        "g"
+      ]
+    ],
+    "m2": [
+      [
+        "a",
+        "b",
+        "f"
+      ],
+      [
+        "a",
+        "c",
+        "h"
+      ],
+      [
+        "d",
+        "e",
+        "g"
+      ],
+      [
+        "b",
+        "f",
+        "h"
+      ]
+    ]
+  },
+  "footprints": {
+    "a": [
+      0,
+      0,
+      0
+    ],
+    "b": [
+      1,
+      0,
+      -1
+    ],
+    "c": [
+      2,
+      0,
+      1
+    ],
+    "d": [
+      1,
+      -1,
+      0
+    ],
+    "e": [
+      2,
+      1,
+      0
+    ],
+    "f": [
+      3,
+      0,
+      0
+    ],
+    "g": [
+      4,
+      -1,
+      1
+    ],
+    "h": [
+      5,
+      1,
+      -1
+    ]
+  },
+  "revision2": {
+    "m1": [
+      [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      [
+        "a",
+        "e"
+      ],
+      [
+        "h"
+      ],
+      [
+        "b",
+        "e",
+        "g"
+      ]
+    ]
+  },
+  "priority": [
+    [
+      "m1",
+      0
+    ],
+    [
+      "m2",
+      0
+    ],
+    [
+      "m1",
+      1
+    ],
+    [
+      "m2",
+      2
+    ],
+    [
+      "m1",
+      3
+    ],
+    [
+      "m2",
+      3
+    ],
+    [
+      "m2",
+      1
+    ],
+    [
+      "m1",
+      2
+    ]
+  ],
+  "calibration": [
+    {
+      "device": "m1",
+      "phase": 0,
+      "signedSamples": {
+        "a": 1,
+        "b": -1,
+        "c": 0.7,
+        "d": -0.2
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.022
+    },
+    {
+      "device": "m2",
+      "phase": 0,
+      "signedSamples": {
+        "a": 1,
+        "b": 1,
+        "f": 0.25
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.027
+    },
+    {
+      "device": "m1",
+      "phase": 1,
+      "signedSamples": {
+        "a": -1,
+        "e": 1
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.022
+    },
+    {
+      "device": "m1",
+      "phase": 2,
+      "signedSamples": {
+        "d": 0.7,
+        "h": 1
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.025
+    },
+    {
+      "device": "m1",
+      "phase": 3,
+      "signedSamples": {
+        "b": 0.5,
+        "e": 1,
+        "g": 0.125
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.038
+    },
+    {
+      "device": "m2",
+      "phase": 1,
+      "signedSamples": {
+        "a": 0.25,
+        "c": 1,
+        "h": -0.75
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.033
+    },
+    {
+      "device": "m2",
+      "phase": 2,
+      "signedSamples": {
+        "d": 1,
+        "e": -1,
+        "g": 1
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.035
+    },
+    {
+      "device": "m2",
+      "phase": 3,
+      "signedSamples": {
+        "b": -1,
+        "f": 1,
+        "h": 1
+      },
+      "maxWeightError": 0.07,
+      "maxOutputError": 0.027
+    }
+  ],
+  "windows": [
+    {
+      "id": "p",
+      "device": "m1",
+      "revision": 1,
+      "region": [
+        1,
+        1,
+        257,
+        134
+      ]
+    },
+    {
+      "id": "q",
+      "device": "m1",
+      "revision": 1,
+      "region": [
+        125,
+        61,
+        401,
+        196
+      ]
+    },
+    {
+      "id": "r",
+      "device": "m2",
+      "revision": 1,
+      "region": [
+        641,
+        289,
+        992,
+        511
+      ]
+    }
+  ],
+  "events": [
+    [
+      "window",
+      "p"
+    ],
+    [
+      "window",
+      "q"
+    ],
+    [
+      "window",
+      "r"
+    ],
+    [
+      "loss",
+      "p",
+      0.5
+    ],
+    [
+      "loss",
+      "p",
+      0.5
+    ],
+    [
+      "supersede",
+      "m1",
+      2
+    ],
+    [
+      "loss",
+      "q",
+      0.75
+    ],
+    [
+      "loss",
+      "r",
+      -0.5
+    ],
+    [
+      "export",
+      2
+    ]
+  ]
+}
